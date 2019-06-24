@@ -14,7 +14,7 @@ provider "aws" {
   region = "${var.aws_region}"
 }
 
-resource "aws_instance" "weblogic" {
+resource "aws_instance" "my_instance" {
   ami = "${var.aws_source_ami}"
   instance_type = "t2.micro"
   source_dest_check = false
@@ -22,27 +22,10 @@ resource "aws_instance" "weblogic" {
   availability_zone = "${var.aws_region_az}"
   vpc_security_group_ids = ["${var.aws_sg_id}"]
   subnet_id = "${var.aws_subnet_id}"
-  associate_public_ip_address=false
+  associate_public_ip_address=true
 
-  tags {
+  tags = {
     Name = "${var.aws_instance_name}"
-  }
-
-  connection {
-    type = "ssh"
-    user = "ec2-user"
-    private_key = "${file(replace("/home/ec2-user/.ssh/KEY_NAME.pem", "KEY_NAME", var.aws_key_name))}"
-  }
-
-  provisioner "file" {
-    source      = "./ansible"
-    destination = "/home/ec2-user/ansible"
-  }
-
-  provisioner "remote-exec" {
-    inline = [
-      "ansible-playbook -i 'localhost,' -c local /home/ec2-user/ansible/playbooks/main.yml"
-    ]
   }
 
 }
