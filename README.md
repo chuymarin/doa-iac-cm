@@ -7,6 +7,7 @@
 * Remove terraform from cache `git rm --cached terraform.tfvars`
 
 **Execute Terraform**
+* Update values from terraform.tfvars
 * terraform init (initializes terraform to use aws resources)
 * terraform plan (checks the terraform template and show resources to be created)
 * terraform apply (executes terraform plan)
