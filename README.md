@@ -4,6 +4,7 @@
 * Fork this repo
 * Clone the forked repo and work in there
 * Do not upload terraform.tfvars to public repo, keep updates in your workstation
+* Remove terraform from cache `git rm --cached terraform.tfvars`
 
 **Execute Terraform**
 * terraform init (initializes terraform to use aws resources)
