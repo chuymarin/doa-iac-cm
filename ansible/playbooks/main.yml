@@ -1,0 +1,9 @@
+---
+- hosts: all
+  become: yes
+
+  tasks:
+  - name: Create dummy file
+    file:
+      src: ../files/hello.txt
+      dest: /home/ec2-user/hello.txt
